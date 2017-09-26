@@ -1,0 +1,49 @@
+
+Controllers
+
+	- home(for displaying home page)
+	
+	- Users
+		- create_account (for creating an account)
+		- delete_account (for deleting an account)
+		
+	- Account (for managing a user account )
+		- change_username (for changing the username)
+		- change_password (for changing the password)
+		- general_settings (for changing name,contact number.. etc)
+		
+	- Image_Gallery (for managing the image gallery)
+		- upload (for uploading a new image)
+		- update (for change the name, description for an image)
+		- delete (for deleting an image)
+		- listing (for viewing the image gallery)
+		
+	- Contact_us
+		- sumbit_form (for storing enquiries to database)
+		- list_enquiries (for listing the enquiries till the date)
+		- submit_reply (for storing reply into database)
+		- add_purpose (for adding a new purpose)
+		- delete_purpose (for deleting an existing purpose)
+		- update_purpose (for updating a purpose)
+		
+	- Category
+		- add_category (for adding new category)
+		- delete_category (for deleting category)
+		- update_category (for updating a new category)
+		
+	- Control_panel (for viewing administrator operation pages)
+		- manage_purposes
+		- list_enquiries
+		- gallery management
+		- category_management
+		- account_management
+	
+	- Site_pages (for viewing corresponding page)
+		- trustees
+		- about_us
+		- mission_and_vision
+		- about_life
+		- image_gallery
+		- navigation
+		- map
+		- contact_us_form
