@@ -1,0 +1,33 @@
+Views
+
+	- index (for displaying home page)
+	
+	// Account
+		- create_account (for creating an account)
+		- delete_account (for deleting an account)
+		- view_profile (for displaying a user profile)
+		- change_username (for changing username)
+		- change_password (for changing password)
+		- general_settings (for viweing general settings page)
+	
+	//Site pages
+		- trustees
+		- about_us (page for viewing about us)
+		- mission_and_vision (page for mission and vision)
+		- about_life (page for the information about l)
+		- view_gallery (for viewing image gallery)
+		- navigation
+		- map
+		- contact_us (page for viewing contact us form, Google map and Address)
+	
+	// Control Panel
+		- upload_image (form for upload image)
+		- update_image (form for change name, description for an image)
+		- delete_image (page for remove image)
+		- list_enquiries (page for viewing all enquiries)
+		- edit_category (page for managing categories)
+		- edit_purpose (page for managing purposes)
+	
+	
+		
+	

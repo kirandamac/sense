@@ -1,0 +1,37 @@
+
+- User
+	- add_user (for creating a new user account)
+	- get_user (for getting a user details)
+	- delete_user (for delete a user)
+	- update_username (for changing the username for a user)
+	- update_password (for changing the password for a user)
+	- update_contact_number (for changing the contact number for a user)
+	- update_email (for changing the email for a user)
+	- update_user_type (for changing the user type for a user)
+	
+- Enquiries
+	- put_enquiry (for add a new enquiry)
+	- get_enquiries (for getting all enquiries)
+
+- Images
+	- add_image (for adding a new image)
+	- update_image_name (for updating image name)
+	- update_image_description (for updating image description)
+	- delete_image (for updating image name)
+	- get_images (for getting all images)
+	
+- Category
+	- add_category (for adding a new category)
+	- get_categories (for getting all categories)
+	- delete_category (for delete a category)
+	
+- Enquiry_Purposes
+	- get_enquiry_purposes (for getting enquiry purposes)
+	- put_enquiry_purposes (for adding new enquiry purpose)
+	- update_enquiry_purposes (for update an enquiry purpose name)
+	- delete_enquiry_purposes (ffor deleting an enquiry purpose)
+	
+- Carousel_images 
+	- add_image (for adding a carousel image)
+	- delete_image (for deletinging a carousel image)
+	- get_images (for get all carousel image)

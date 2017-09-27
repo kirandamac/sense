@@ -8,6 +8,7 @@ Controllers
 		- delete_account (for deleting an account)
 		
 	- Account (for managing a user account )
+		- view_profile (for viewing profile)
 		- change_username (for changing the username)
 		- change_password (for changing the password)
 		- general_settings (for changing name,contact number.. etc)
