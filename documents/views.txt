@@ -18,7 +18,7 @@ Views
 		- view_gallery (for viewing image gallery)
 		- navigation
 		- map
-		- contact_us (page for viewing contact us form, Google map and Address)
+		- enquiry (page for viewing contact us form, Google map and Address)
 	
 	// Control Panel
 		- upload_image (form for upload image)

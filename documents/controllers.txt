@@ -19,8 +19,8 @@ Controllers
 		- delete (for deleting an image)
 		- listing (for viewing the image gallery)
 		
-	- Contact_us
-		- sumbit_form (for storing enquiries to database)
+	- Enquiry
+		- submit_form (for storing enquiries to database)
 		- list_enquiries (for listing the enquiries till the date)
 		- submit_reply (for storing reply into database)
 		- add_purpose (for adding a new purpose)
