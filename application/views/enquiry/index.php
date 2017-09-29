@@ -14,7 +14,7 @@
         <h3 class = "text-primary">Submit Your Query</h3>
         <h4 class = "text-danger"><?php echo validation_errors(); ?></h4><br>
 
-        <form action = "<?php echo base_url()?>" method  = "post" style = "width : 400px; height : 400px">
+        <form class = "forms" action = "<?php echo base_url()?>" method  = "post" style = "width : 300px; height : 400px">
 
             <div class = "form-group">
                 <label>First Name</label>
@@ -70,7 +70,7 @@
               </textarea>
           </div>
 
-          <button type = "submit" class = "btn btn-default">Submit</button>
+          <button type = "submit" class = "btn btn-primary">Submit</button>
 
       </form>
 

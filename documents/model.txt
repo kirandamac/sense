@@ -12,6 +12,8 @@
 - Enquiries
 	- put_enquiry (for add a new enquiry)
 	- get_enquiries (for getting all enquiries)
+	- put_enquiry_reply ( for storing an enquiry reply to database )
+	- get_enquiry_reply ( for retrieve all enquiry reply from database )
 
 - Images
 	- add_image (for adding a new image)

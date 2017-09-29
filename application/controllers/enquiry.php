@@ -33,8 +33,8 @@ class Enquiry extends CI_Controller {
 
 				$aEnquiry = array();
 
-				$aEnquiry['firstname']				= $this->input->post('fname');
-				$aEnquiry['lastname']				= $this->input->post('lname');
+				$aEnquiry['firstname']			= $this->input->post('fname');
+				$aEnquiry['lastname']			= $this->input->post('lname');
 				$aEnquiry['email']				= $this->input->post('email');
 				$aEnquiry['contact_number'] 	= $this->input->post('contact_number');
 				$aEnquiry['message']  			= $this->input->post('message');
@@ -52,16 +52,17 @@ class Enquiry extends CI_Controller {
 		$this->load->view('enquiry/index');
 	}
 
-	public function list_enquiries(){
+	public function list_enquiries() {
 
-		$query = $this->db->get('enquiries');
-		$this->db->order_by("created_on", "desc");
-		$result = $query->result();
-		$result_set = array
-									(
-										'result' => $result
-									);
+		$this->load->model('Enquiries');
+		$result_set = $this->Enquiries->get_enquiries();
 		$this->load->view('enquiry/list_enquiries', $result_set);
+	}
+
+	public function add_enquiry_reply() {
+
+		echo "Enquiry reply";
+
 	}
 
 }

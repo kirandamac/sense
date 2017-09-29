@@ -22,6 +22,7 @@ Controllers
 	- Enquiry
 		- submit_form (for storing enquiries to database)
 		- list_enquiries (for listing the enquiries till the date)
+		- add_enquiry_reply ( for add a new enquiry reply to database )
 		- submit_reply (for storing reply into database)
 		- add_purpose (for adding a new purpose)
 		- delete_purpose (for deleting an existing purpose)
