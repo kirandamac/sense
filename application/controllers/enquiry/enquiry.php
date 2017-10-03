@@ -49,9 +49,8 @@ class Enquiry extends CI_Controller {
 		}
 
 
-		$this->load->view('enquiry/index');
+		$this->load->view('enquiry/contact_us');
 	}
-
 	public function list_enquiries() {
 
 		$this->load->model('Enquiries');
@@ -59,9 +58,21 @@ class Enquiry extends CI_Controller {
 		$this->load->view('enquiry/list_enquiries', $result_set);
 	}
 
+	public function get_enquiry_purpose() {
+
+		//foreach ( $result_set as $key => $data ):
+
+			//$count = 0;
+		//	print_r($data);
+			$this->load->model('Enquiries');
+			$this->Enquiries->get_enquiry_purpose();
+			//$count++;
+		//endforeach;
+	}
+
 	public function add_enquiry_reply() {
 
-		echo "Enquiry reply";
+		echo $POST['message'];
 
 	}
 

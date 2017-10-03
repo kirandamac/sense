@@ -41,8 +41,7 @@
 						<div class = "modal-dialog"  role="document">
 							<div class = "modal-content">
 
-								<form class = "" action = "http://localhost/sense/enquiry/add_enquiry_reply" method = "post" >
-
+								<form method = "post" id = "reply_form">
 									<div class = "modal-header">
 										<button type = "button" class = "close" data-dismiss = "modal">&times;</button>
 										<h3>Reply</h3>
@@ -53,16 +52,22 @@
 							              <input type = "text"
 										  		 class = "form-control"
 												 placeholder = "Give your message here..."
-												 name = "reply">
+												 name = "reply"
+												 id = "reply_message">
 							            </div>
 
 									</div>
-
-									<div class = "modal-footer">
-										<button type = "submit" class = "btn btn-primary" data-dismiss = "modal">save</button>
-										<button type = "button" class = "btn btn-default" data-dismiss = "modal">close</button>
+									<div class = "form-group">
+									<button type 		 = "submit"
+											class		 = "btn btn-primary"
+											data-dismiss = "modal"
+											id 			 = "save">
+										save</button>
 									</div>
-							</form>
+								</form>
+								<div class = "modal-footer">
+									<button type = "button" class = "btn btn-default" data-dismiss = "modal">close</button>
+								</div>
 
 							</div>
 						</div>
@@ -71,9 +76,20 @@
 
   </table>
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js">
+	$(document).ready(function() {
+		$('#reply_form').on("submit", function(event) {
+			event.preventDefault();
+			var message = $('#reply_message').val();
+			$.ajax( {
+				URL:"http://localhost/sense/enquiry/enquiry/add_enquiry_reply",
+				method:"POST",
+				data:{message:message}
+   				});
+			});
+		});
+	</script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
   <script src="http://localhost/sense/asset/js/bootstrap.min.js"></script>
 </body>
 </html>

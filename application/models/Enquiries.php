@@ -17,5 +17,21 @@
                                 );
             return $result_set;
         }
+
+        public function get_enquiry_purpose() {
+
+                $this->db->select('title');
+                $this->db->where('id', 1);
+                $query = $this->db->get('enquiry_purposes');
+                $purpose = $query->result();
+                $purpose = array (
+                                            'purpose' => $purpose
+                                 );
+
+                echo "<pre>";
+                    print_r($purpose);
+                echo "</pre>";
+
+        }
     }
 ?>

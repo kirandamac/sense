@@ -14,7 +14,7 @@
         <h3 class = "text-primary">Submit Your Query</h3>
         <h4 class = "text-danger"><?php echo validation_errors(); ?></h4><br>
 
-        <form class = "forms" action = "<?php echo base_url()?>" method  = "post" style = "width : 300px; height : 400px">
+        <form class = "forms" action = "<?php echo base_url()?>enquiry" method  = "post" style = "width : 300px; height : 400px">
 
             <div class = "form-group">
                 <label>First Name</label>
@@ -54,7 +54,7 @@
 
           <div class="form-group">
               <label>Purpose</label>
-              <select class="form-control" name="purpose">
+              <select class = "form-control" name = "purpose">
                   <option value = "1">Employment</option>
                   <option value = "2">General</option>
                   <option value = "3">Advertaisement</option>
