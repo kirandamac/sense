@@ -6,6 +6,7 @@
 </head>
 <body>
 	<div class = "container">
+		<a href = "">kiran</a>
 		<h2 class = "text-primary">Enquiries</h2>
     		<table class = "table  table-striped table-bordered table-hover  table-condensed">
 
@@ -41,34 +42,34 @@
 						<div class = "modal-dialog"  role="document">
 							<div class = "modal-content">
 
-								<form method = "post" id = "reply_form">
+								<form action = " " id = "postForm" role = "form">
 									<div class = "modal-header">
 										<button type = "button" class = "close" data-dismiss = "modal">&times;</button>
 										<h3>Reply</h3>
 									</div>
 
-									<div class = "modal-body">
+									<div class = "modal-body" style = "height : 200px">
 										<div class = "form-group">
-							              <input type = "text"
-										  		 class = "form-control"
-												 placeholder = "Give your message here..."
-												 name = "reply"
-												 id = "reply_message">
+											<textarea placeholder = "Give your message here..."
+								                     id           = "message"
+													 name 		  = "message"
+								                     class        = "form-control"
+								                     style        = "height : 150px">
+								            </textarea>
 							            </div>
+									</div>
 
+									<div class = "modal-footer">
+										<input type  		 = "submit"
+											   name 		 = "save"
+											   value 		 = "SAVE"
+											   class		 = "btn btn-primary"
+											   data-dismiss  = "modal"
+											   id 			 = "save"
+											   onclick		 = "submitForm()">
 									</div>
-									<div class = "form-group">
-									<button type 		 = "submit"
-											class		 = "btn btn-primary"
-											data-dismiss = "modal"
-											id 			 = "save">
-										save</button>
-									</div>
+
 								</form>
-								<div class = "modal-footer">
-									<button type = "button" class = "btn btn-default" data-dismiss = "modal">close</button>
-								</div>
-
 							</div>
 						</div>
 					</div>
@@ -76,20 +77,38 @@
 
   </table>
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js">
-	$(document).ready(function() {
-		$('#reply_form').on("submit", function(event) {
-			event.preventDefault();
-			var message = $('#reply_message').val();
-			$.ajax( {
-				URL:"http://localhost/sense/enquiry/enquiry/add_enquiry_reply",
-				method:"POST",
-				data:{message:message}
-   				});
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js" type="text/javascript"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" type="text/javascript"></script>
+  <!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+
+<!-- Latest minified bootstrap js -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script>
+	function submitForm() {
+		var message = $('#message').val();
+		if(message.trim() == '' ) {
+        	alert('Please enter your message.');
+        	$('#message').focus();
+        	return false;
+		}
+		else {
+			$.ajax({
+				type:'POST',
+				url:'http://localhost/sense/enquiry/enquiry/add_enquiry_reply',
+				data:'message='+message,
+				success:function(msg){
+                		if(msg == 'ok'){
+                    		alert('success');
+                		}
+						else {
+							alert('error');
+                		}
+				}
 			});
-		});
-	</script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-  <script src="http://localhost/sense/asset/js/bootstrap.min.js"></script>
+		}
+	}
+</script>
+
 </body>
 </html>

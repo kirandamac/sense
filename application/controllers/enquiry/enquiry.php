@@ -72,7 +72,6 @@ class Enquiry extends CI_Controller {
 
 	public function add_enquiry_reply() {
 
-		echo $POST['message'];
 
 	}
 
