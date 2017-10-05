@@ -18,19 +18,20 @@
             return $result_set;
         }
 
-        public function get_enquiry_purpose() {
+        public function get_enquiry_purposes() {
 
-                $this->db->select('title');
-                $this->db->where('id', 1);
-                $query = $this->db->get('enquiry_purposes');
-                $purpose = $query->result();
-                $purpose = array (
-                                            'purpose' => $purpose
-                                 );
+            $query = $this->db->get('enquiry_purposes');
+            $aPurposes = $query->result();
+            $aPurposes = array (
+                                    'purposes' => $aPurposes
+                               );
 
-                echo "<pre>";
-                    print_r($purpose);
-                echo "</pre>";
+            return $aPurposes;
+        }
+
+        public function put_enquiry_reply() {
+
+            $this->db->insert('enquiry_replies' , $aEnquiry_reply);
 
         }
     }

@@ -20,6 +20,7 @@ class Enquiry extends CI_Controller {
 	 */
 	public function index() {
 
+		$this->load->model('Enquiries');
 		if( ! empty($_POST) ) {
 
 
@@ -41,15 +42,16 @@ class Enquiry extends CI_Controller {
 				$aEnquiry['purpose']  			= $this->input->post('purpose');
 				$aEnquiry['created_on']  		= date('Y-m-d H:i:s');
 
-				$this->load->model('Enquiries');
 				$this->Enquiries->put_enquiry( $aEnquiry );
+
+				$this->session->set_flashdata('message','Success!!!');
 
 		  }
 
 		}
 
-
-		$this->load->view('enquiry/contact_us');
+		$aEnquiry_purposes = $this->Enquiries->get_enquiry_purposes();
+		$this->load->view('enquiry/enquiry', $aEnquiry_purposes);
 	}
 	public function list_enquiries() {
 
@@ -58,21 +60,19 @@ class Enquiry extends CI_Controller {
 		$this->load->view('enquiry/list_enquiries', $result_set);
 	}
 
-	public function get_enquiry_purpose() {
+	public function get_enquiry_purposes() {
 
-		//foreach ( $result_set as $key => $data ):
+		$this->load->model('Enquiries');
+		$this->Enquiries->get_enquiry_purposes();
 
-			//$count = 0;
-		//	print_r($data);
-			$this->load->model('Enquiries');
-			$this->Enquiries->get_enquiry_purpose();
-			//$count++;
-		//endforeach;
 	}
 
 	public function add_enquiry_reply() {
 
-
+	/*	$message = strip_tags($_POST['message']);
+		$aEnquiry_reply = array();
+		$aEnquiry_reply['enquiry_id'] = 3;
+		$this->Enquiries->put_enquiry_reply( $aEnquiry_reply );*/
 	}
 
 }
