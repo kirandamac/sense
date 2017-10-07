@@ -18,6 +18,7 @@ class Enquiry extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
+
 	public function index() {
 
 		$this->load->model('Enquiries');
@@ -56,8 +57,11 @@ class Enquiry extends CI_Controller {
 	public function list_enquiries() {
 
 		$this->load->model('Enquiries');
+		$aEnquiry_purposes = $this->Enquiries->get_enquiry_purposes();
 		$result_set = $this->Enquiries->get_enquiries();
-		$this->load->view('enquiry/list_enquiries', $result_set);
+		$aList_Enquiry_Data = array_merge($result_set, $aEnquiry_purposes);
+		$this->load->view('enquiry/list_enquiries', $aList_Enquiry_Data);
+
 	}
 
 	public function get_enquiry_purposes() {
@@ -69,10 +73,30 @@ class Enquiry extends CI_Controller {
 
 	public function add_enquiry_reply() {
 
-	/*	$message = strip_tags($_POST['message']);
+		$this->load->model('Enquiries');
+	  	$enquiry_id = $this->input->post('enquiry_id');
+		$message 	= $this->input->post('reply_message');
+		$aEnquiry = $this->Enquiries->get_enquiry_by_id( $enquiry_id );
 		$aEnquiry_reply = array();
-		$aEnquiry_reply['enquiry_id'] = 3;
-		$this->Enquiries->put_enquiry_reply( $aEnquiry_reply );*/
+
+			$aEnquiry_reply['enquiry_id']  = 5;
+			$aEnquiry_reply['auther_id']   = 1;
+			$aEnquiry_reply['auther_name'] = "Ram";
+			$aEnquiry_reply['message']     = "djknjgf";
+			$aEnquiry_reply['created_on']  = date('Y-m-d H:i:s');
+
+		$this->Enquiries->put_enquiry_reply( $aEnquiry_reply );
+	}
+
+	public function view_conversation() {
+
+		$this->load->model('Enquiries');
+		$enquiry_id = $this->input->get('id');
+		echo "enquiry id".$enquiry_id;
+		$aEnquiry = $this->Enquiries->get_enquiry_by_id($enquiry_id);
+		$aEnquiry_reply = $this->Enquiries->get_enquiry_reply($enquiry_id);
+		$aConversation_Data = array_merge($aEnquiry, $aEnquiry_reply);
+		$this->load->view('enquiry/conversation', $aConversation_Data);
 	}
 
 }

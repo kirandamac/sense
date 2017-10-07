@@ -1,1 +1,1 @@
-SELECT * FROM sense.status;
+SELECT * FROM sense.user;

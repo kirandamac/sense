@@ -23,7 +23,6 @@
 			      <th class="text-info">MESSAGE</th>
 			      <th class="text-info">PURPOSE</th>
 			      <th class="text-info">RECEIVED ON</th>
-				  <th class="text-info">ANSWERS</th>
 				  <th class="text-info">ACTIONS</th>
 			    </tr>
 
@@ -35,29 +34,36 @@
 			        <td> <?php echo $data->email ?> </td>
 			        <td> <?php echo $data->contact_number ?> </td>
 			        <td> <?php echo $data->message ?> </td>
-			        <td> <?php echo $data->purpose ?> </td>
+			        <td> <?php foreach ( $purposes as $row_purpose ):
+							       if( $data->purpose == $row_purpose->id ) {
+								      	echo $row_purpose->title;
+								   }
+                     		   endforeach;?></td>
 			        <td> <?php echo date("d M Y",strtotime($data->created_on))?> </td>
-					<td></td>
-					<td><label for         ="reply"
-							   name        ="reply"
-							   class       ="text-info"
-							   data-toggle ="modal"
-							   data-target ="#enq_reply"
+					<td><label for="reply"
+							   name="reply"
+							   class="text-info"
+							   data-toggle="modal"
+							   data-target="#enq_reply"
 							   data-enquiry="<?php echo $data->id ?>" >
 							   Give answer
-						</label>
+						</label><br>
+						<a href="<?php echo base_url()?>enquiry/view_conversation?id=<?php echo $data->id ?>"
+						   data-enquiry="<?php echo $data->id ?>"
+						   name="view_conversation"
+						   class="text-info">View Conversation</a>
 					</td>
 			        </tr>
 
 			    <?php endforeach;?>
-
 
 				<div class="container">
 					<div class="modal fade" id="enq_reply" role="dialog">
 						<div class="modal-dialog"  role="document">
 							<div class="modal-content">
 
-								<form action=" " class="reply_modal" id="postForm" role="form">
+								<form action="<?php echo base_url()?>enquiry/add_enquiry_reply"
+										class="reply_modal" id="postForm" role="form">
 									<div class="modal-header">
 										<button type="button" class="close" data-dismiss="modal">&times;</button>
 										<h3>Reply</h3>
@@ -66,22 +72,19 @@
 									<div class="modal-body" style="height : 200px">
 										<div class="form-group">
 											<textarea placeholder="Give your message here..."
-								                     id          = "message"
-													 name 		 = "message"
-								                     class       = "form-control"
-								                     style       = "height : 150px">
-								            </textarea>
+								                     id="message"
+													 name="message"
+								                     class="form-control"
+								                     style="height : 150px"></textarea>
 							            </div>
 									</div>
 
 									<div class="modal-footer">
-										<input type  	   ="submit"
-											   name 	   ="save"
-											   value 	   ="SAVE"
-											   class	   ="btn btn-primary"
-											   id 		   ="save"
-											   data-dismiss="modal"
-											   onclick	   ="submitForm()">
+										<input type="submit"
+											   name="save"
+											   value="SAVE"
+											   class="btn btn-primary"
+											   id="save">
 									</div>
 
 								</form>
@@ -97,31 +100,7 @@
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-<script>
-	$("label[name=reply]").click(function() {
-		alert($(this).attr("data-enquiry"));
-	});
-	function submitForm() {
-		var message = $('#message').val();
-		if(message.trim() == '' ) {
-        	alert('Please enter your message.');
-        	$('#message').focus();
-        	return false;
-		}
-		else {
-			$.ajax({
-				type:'POST',
-				url:'<?php echo base_url()?>enquiry/add_enquiry_reply',
-				data:$('form.reply_modal').serialize(),
-				success: function(message) {
-					url:'<?php echo base_url()?>enquiry/list_enquiries'
-				},
-				error: function(){
-					alert("Error");
-				}
-			});
-		}
-	}
-</script>
+<script type="text/javascript" src="<?php echo base_url()?>javascript\reply.js"></script>
+
 </body>
 </html>
