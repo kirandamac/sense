@@ -34,11 +34,13 @@
 			        <td> <?php echo $data->email ?> </td>
 			        <td> <?php echo $data->contact_number ?> </td>
 			        <td> <?php echo $data->message ?> </td>
-			        <td> <?php foreach ( $purposes as $row_purpose ):
-							       if( $data->purpose == $row_purpose->id ) {
-								      	echo $row_purpose->title;
-								   }
-                     		   endforeach;?></td>
+			        <td>
+						<?php foreach ( $purposes as $row_purpose ):?>
+							       <?php if( $data->purpose == $row_purpose->id ):?>
+								      	<?php echo $row_purpose->title; ?>
+								   <?php endif;?>
+             		   <?php endforeach;?>
+				   </td>
 			        <td> <?php echo date("d M Y",strtotime($data->created_on))?> </td>
 					<td><label for="reply"
 							   name="reply"

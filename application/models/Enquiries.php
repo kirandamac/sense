@@ -59,5 +59,10 @@
             $this->db->insert('enquiry_replies' , $aEnquiry_reply);
 
         }
+
+        public function get_username($user_id)
+         {
+
+         }
     }
 ?>

@@ -1,1 +1,1 @@
-SELECT * FROM sense.user;
+SELECT * FROM sense.category_group;

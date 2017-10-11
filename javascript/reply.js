@@ -4,14 +4,15 @@ var reply_message;
 
 $("label[name=reply]").click(function() {
     //alert($(this).attr("data-enquiry"));
-    enq_id = $(this).attr("data-enquiry");
+    enquiry_id = $(this).attr("data-enquiry");
 });
 
 
 $('#postForm').submit(function(e) {
 
-    console.log('testing');
+    //console.log(enquiry_id);
     e.preventDefault();
+    reply_message = $('#message').val();
 
 
         $.ajax({
@@ -20,13 +21,14 @@ $('#postForm').submit(function(e) {
             url:'http://localhost/sense/enquiry/add_enquiry_reply',
             data:
             {
-                enquiry_id:1,
-                reply_message:"test message"
+                enquiry_id:enquiry_id,
+                reply_message:reply_message
             },
             success: function(message) {
 
                 console.log("Success");
-
+                $('#enq_reply').modal('hide');
+                $('#message').val('');
             },
             error: function(){
 
@@ -38,62 +40,3 @@ $('#postForm').submit(function(e) {
 
     //$('#enq_reply').modal('hide');
 });
-
-/*s
-function submitForm() {
-
-    var reply = $('#message').val();
-
-    if(message.trim() == '' ) {
-
-        alert('Please enter your message.');
-        $('#message').focus();
-
-
-    }
-    else {
-
-        $.ajax({
-
-            type:'POST',
-            url:'http://localhost/sense/enquiry/add_enquiry_reply',
-            data:{enq_id:enq_id, reply:reply},
-            success: function(message) {
-
-                alert("Success");
-
-            },
-            error: function(){
-
-                alert("Error");
-
-            }
-
-        });
-
-    }
-
-    return false;
-
-
-
-    $('#postForm').submit(function(e) {
-        e.preventDefault();
-        var url = $(this).attr('action');
-
-        $.post(
-                url,
-                {
-                    enq_id:enq_id,
-                    reply:reply
-                }
-            ).done(function(data) {
-                console.log('post saved');
-                console.log(data);
-            });
-    });
-
-    return false;
-
-}
-*/

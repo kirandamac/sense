@@ -19,8 +19,8 @@
 
             <div class="form-group">
                 <label>First Name</label>
-                <input type       ="text"
-                       class      ="form-control"
+                <input type="text"
+                       class="form-control"
                        placeholder="Add first name"
                        name       ="fname"
                        value      ="<?php echo set_value('fname'); ?>">
