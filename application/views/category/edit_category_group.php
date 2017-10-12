@@ -10,59 +10,41 @@
 	<title>Category group management</title>
 </head>
 <body>
-	<div class="container">
 
-		<h2 class="text-primary">Category Groups</h2><br>
-	  		<form class="forms" action="<?php echo base_url()?>category/category_group" method="post" style="width : 250px; height : 200px">
+    <div class="container">
 
-				<div class="form-group">
-					<label>Group Name</label>
-					<input type       ="text"
-						   class      ="form-control"
-						   placeholder=""
-						   name       ="group_name"
-						   value      ="<?php echo set_value('group_name'); ?>">
-				</div>
+        <h2 class="text-primary">Edit Category Groups</h2><br>
+        <form class="forms" action="" method="post" style="width : 250px; height : 400px">
+            <div class="form-group">
+                <label>Group Name</label>
+                <select class="form-control" name="category_group">
+                    <?php foreach ( $aCategory_group as $data ):
+                        echo "<option value=".$data->id.">".$data->name."</option>";
+                     endforeach;?>
+                </select>
+            </div>
 
-				<div class="form-group">
-					<label>Group Title</label>
-					<input type       ="text"
-						   class      ="form-control"
-						   placeholder=""
-						   name       ="group_title"
-						   value      ="<?php echo set_value('group_title'); ?>">
-				</div>
+            <div class="form-group">
+                <label>Group Title *</label>
+                <input type       ="text"
+                       class      ="form-control"
+                       placeholder=""
+                       name       ="group_title"
+                       value      ="">
+            </div>
 
-				<button type="submit" class="btn btn-primary">Add</button>
+            <div class="form-group">
+    			<label>Status</label>
+    			<select class="form-control" name="category_group_status">
+    				<?php foreach ( $aStatus as $data ):
+    					echo "<option value=".$data->id.">".$data->title."</option>";
+    				 endforeach;?>
+    			</select>
+    		</div>
 
-			</form>
-
-		    		<table class="table  table-striped table-bordered table-hover  table-condensed">
-
-					    <tr>
-					      <th class="text-info">ID</th>
-					      <th class="text-info">NAME</th>
-					      <th class="text-info">TITLE</th>
-						  <th class="text-info">STATUS</th>
-					    </tr>
-
-						<?php foreach ( $aCategory_group as $key => $data ):?>
-
-					        <tr>
-					        <td> <?php echo ++$key ?> </td>
-					        <td> <?php echo $data->name ?> </td>
-					        <td> <?php echo $data->title ?> </td>
-							<td> <?php foreach ( $aStatus as $status ):?>
-								       <?php if( $data->status == $status->id ):?>
-									      	<?php echo $status->title; ?>
-									   <?php endif;?>
-	             		   		 <?php endforeach;?>
-					    	</td>
-						<?php endforeach;?>
-					</table>
-
+            <button type="submit" class="btn btn-primary">Update / Back</button>
+        </form>
     </div>
-
 </body>
 </body>
 </html>

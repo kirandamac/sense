@@ -27,8 +27,6 @@ class Category extends CI_Controller {
 			$this->form_validation->set_rules('name', 'Name', 'required');
 			$this->form_validation->set_rules('title', 'Title', 'required');
 			$this->form_validation->set_rules('description', 'Description', 'required');
-		    $this->form_validation->set_rules('group_name', 'Group Name', 'required');
-			$this->form_validation->set_rules('group_title', 'Group Title', 'required');
 
 			if( $this->form_validation->run() == TRUE ) {
 
@@ -37,8 +35,7 @@ class Category extends CI_Controller {
 				$aCategory['name']       		= $this->input->post('name');
 				$aCategory['title']       		= $this->input->post('title');
 				$aCategory['description'] 		= $this->input->post('description');
-				$aCategory['category_group']  	= $this->input->post('category_group');
-				$aCategory['group_title'] 		= $this->input->post('group_title');
+				$aCategory['group_id']  	    = $this->input->post('category_group');
 				$aCategory['created_on'] 		= date('Y-m-d H:i:s');
 
 				$this->Categories->put_category( $aCategory );
@@ -61,8 +58,8 @@ class Category extends CI_Controller {
 
 	public function get_categories_by_group() {
 
-		$group_name = "images";
-		$aCategories = $this->Categories->get_categories_by_group($group_name);
+		$group_id = 1;
+		$aCategories = $this->Categories->get_categories_by_group($group_id);
 
 		echo "<pre>";
 		print_r($aCategories);
@@ -96,8 +93,35 @@ class Category extends CI_Controller {
 
 		$Category_groups = $this->Categories->get_category_groups();
 		$Category_group_status = $this->Categories->get_status();
-		$aCategory_group_Data = array_merge($Category_groups, $Category_group_status);
-		$this->load->view('category/edit_category_group', $aCategory_group_Data);
+		$Categories = $this->Categories->get_categories();
+		$aCategory_group_Data = array_merge($Category_groups, $Category_group_status, $Categories);
+		$this->load->view('category/add_category_group', $aCategory_group_Data);
+	}
+
+	public function edit_category_group() {
+
+		if( !empty($_POST) ) {
+
+			$aCategory_group['id'] 	   = $this->input->post('category_group');
+			$aCategory_group['status'] = $this->input->post('category_group_status');
+
+			$this->Categories->update_category_groups($aCategory_group);
+
+			$Category_groups = $this->Categories->get_category_groups();
+			$Category_group_status = $this->Categories->get_status();
+			$aCategory_group_Data = array_merge($Category_groups, $Category_group_status);
+			$this->load->view('category/add_category_group', $aCategory_group_Data);
+
+		}
+		else {
+
+			$Category_groups = $this->Categories->get_category_groups();
+			$Category_group_status = $this->Categories->get_status();
+			$aCategory_group_Data = array_merge($Category_groups, $Category_group_status);
+			$this->load->view('category/edit_category_group', $aCategory_group_Data);
+
+		}
+
 	}
 
 }

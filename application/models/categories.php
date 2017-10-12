@@ -10,7 +10,6 @@
         public function get_categories() {
 
             $query = $this->db->get('categories');
-            $this->db->order_by("created_on", "desc");
             $result = $query->result();
             $result_set = array (
                                         'aCategories' => $result
@@ -18,10 +17,10 @@
             return $result_set;
         }
 
-        public function get_categories_by_group( $group_name ) {
+        public function get_categories_by_group( $group_id ) {
 
             $this->db->select('*');
-            $this->db->where('group_name', $group_name);
+            $this->db->where('group_id', $group_id);
             $query = $this->db->get('categories');
             $result = $query->result();
             $result_set = array (
@@ -45,6 +44,15 @@
             return $result_set;
         }
 
+        public function update_category_groups($aCategory_group) {
+
+            $id = $aCategory_group['id'];
+            $data = array(
+                        'status' => $aCategory_group['status']
+                         );
+            $this->db->where('id', $id);
+            $this->db->update('category_group', $data);
+        }
         public function get_status() {
 
             $query = $this->db->get('status');
