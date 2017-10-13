@@ -29,6 +29,18 @@
             return $result_set;
         }
 
+        public function get_category_by_id($category_id) {
+
+            $this->db->select('*');
+            $this->db->where('id', $category_id);
+            $query = $this->db->get('categories');
+            $result = $query->result();
+            $result_set = array (
+                                'aCategories' => $result
+                              );
+            return $result_set;
+        }
+
         public function put_category_group( $aCategory_group ) {
 
             $this->db->insert('category_group' , $aCategory_group);
@@ -44,15 +56,42 @@
             return $result_set;
         }
 
+        public function get_category_group_by_id($group_id) {
+
+            $this->db->select('*');
+            $this->db->where('id', $group_id);
+            $query = $this->db->get('category_group');
+            $result = $query->result();
+            $result_set = array (
+                                        'aCategory_group' => $result
+                                );
+            return $result_set;
+        }
+
         public function update_category_groups($aCategory_group) {
 
             $id = $aCategory_group['id'];
             $data = array(
+                        'title'  => $aCategory_group['title'],
                         'status' => $aCategory_group['status']
                          );
             $this->db->where('id', $id);
             $this->db->update('category_group', $data);
         }
+
+        public function update_category($aCategory) {
+
+            $id = $aCategory['id'];
+            $data = array(
+                        'title'         => $aCategory['title'],
+                        'description'   => $aCategory['description'],
+                        'status'        => $aCategory['category_status'],
+                         );
+
+            $this->db->where('id', $id);
+            $this->db->update('categories', $data);
+        }
+
         public function get_status() {
 
             $query = $this->db->get('status');

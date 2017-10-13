@@ -14,14 +14,20 @@
     <div class="container">
 
         <h2 class="text-primary">Edit Category Groups</h2><br>
-        <form class="forms" action="" method="post" style="width : 250px; height : 400px">
+
+		 	<?php $id = $_GET['id'];?>
+
+        <form class="forms" action="<?php echo base_url()?>category/edit_category_group?id=<?php echo $id ?>" method="post" style="width : 250px; height : 400px">
+
             <div class="form-group">
-                <label>Group Name</label>
-                <select class="form-control" name="category_group">
-                    <?php foreach ( $aCategory_group as $data ):
-                        echo "<option value=".$data->id.">".$data->name."</option>";
-                     endforeach;?>
-                </select>
+                <label>Group Name</label><br>
+
+                <?php foreach ( $aCategory_group as $group ):?>
+					<?php if($group->id == $id): ?>
+						<label class="text-primary"><?php echo $group->title ?></label>
+					<?php endif ?>
+				<?php endforeach; ?>
+
             </div>
 
             <div class="form-group">
@@ -36,9 +42,11 @@
             <div class="form-group">
     			<label>Status</label>
     			<select class="form-control" name="category_group_status">
+
     				<?php foreach ( $aStatus as $data ):
     					echo "<option value=".$data->id.">".$data->title."</option>";
     				 endforeach;?>
+					 
     			</select>
     		</div>
 

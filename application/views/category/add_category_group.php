@@ -51,14 +51,14 @@
 							<form action="<?php echo base_url()?>category/edit_category_group" method="">
 					        <tr>
 					        <td> <?php echo ++$key ?> </td>
-					        <td> <?php echo $data->name ?> </td>
+					        <td> <?php echo '<a href = "'.base_url().'category/edit_category_group?id='.$data->id.'">'.$data->name ?> </td>
 					        <td> <?php echo $data->title ?> </td>
 							<td>
 								<ul>
 									<?php foreach ( $aCategories as $category_data ):?>
 										<?php if( $category_data->group_id == $data->id ):?>
 											<li>
-												<?php echo $category_data->title ?>
+												<?php echo '<a href = "'.base_url().'category/edit_category?id='.$category_data->id.'">'.$category_data->title.'</a>' ?>
 											</li>
 										<?php endif;?>
 								 	<?php endforeach; ?>
@@ -72,7 +72,6 @@
 					    	</td>
 						<?php endforeach;?>
 						</table>
-						<button type="submit" class="btn btn-primary">Edit</button>
 						</form>
 
     </div>
